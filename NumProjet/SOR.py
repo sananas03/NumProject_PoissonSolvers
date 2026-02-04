@@ -6,9 +6,6 @@ Created on Fri Oct 17 15:16:43 2025
 @authors: sgardettehofmann, lmannoni
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 from domain import *
 from jacobi import *
 import math
