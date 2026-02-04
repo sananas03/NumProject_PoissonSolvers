@@ -6,13 +6,10 @@ Created on Fri Oct 17 14:17:46 2025
 @author: lmannoni, sgardettehofmann
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 from domain import *
 
 
-### In 1D : 
+### in 1D : 
 #linearisation of the 3D vector rho in 1D
 def linearize(mat) :
     N=len(mat)
@@ -165,45 +162,6 @@ def plot_jacobi(results, iter_max, precision, tol):
     plt.show()
 
 
-def plot_CV_values(method, results, precision, tol):
-    N_list = list(results.keys())
-    #res_cv_list is the list of the minimal residuals reached, for each N
-    res_cv_list = [results[N]["res_cv"] for N in N_list]
-    #iter_cv_list is the list of the number of iterations needed to reach convergence, for each N
-    iter_cv_list = [results[N]["iter_cv"] for N in N_list]
- 
-    fig, ax1 = plt.subplots(figsize=(8,6))
-    ax1.set_xlabel("N")
-    ax1.set_ylabel("Nb of iterations to converge", color="tab:blue")
-    ax1.plot(N_list, iter_cv_list, marker='o', linestyle='-', color="tab:blue")
-    ax1.tick_params(axis='y', labelcolor="tab:blue")
-
-    ax2 = ax1.twinx()
-    ax2.set_ylabel("log10(minimal residual)", color="tab:red")
-    ax2.plot(N_list, np.log10(res_cv_list), marker='s', linestyle='--', color="tab:red")
-    ax2.tick_params(axis='y', labelcolor="tab:red")
-
-    plt.title(f"{method} convergence for different N (threshold={tol}, {precision})")
-    ax1.grid(True, linestyle='--', alpha=0.5)
-    plt.tight_layout()
-    plt.show()
-
-def plot_threshold_values(method, results, precision, tol):
-    N_list = list(results.keys())
-    iter_threshold_list = [results[N]["iter_threshold"] for N in N_list]
-
-    plt.figure(figsize=(8,6))
-    plt.plot(N_list, iter_threshold_list,
-             marker='o', linestyle='-', linewidth=2)
-
-    plt.xlabel("N")
-    plt.ylabel("Number of iterations to reach threshold")
-    plt.title(f"{method} speed for different N (threshold={tol}, {precision})")
-    plt.grid(True, linestyle='--', alpha=0.5)
-    plt.tight_layout()
-    plt.show()
-    
-    
 ### MAIN ###
 
 # #parameters
