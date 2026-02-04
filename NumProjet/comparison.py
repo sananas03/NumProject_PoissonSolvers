@@ -46,8 +46,7 @@ def plot_comparison(results1, results2, iter_max, tol, precision, N_list):
     plt.tight_layout()
     plt.show()
 
-
-
+    
 #Plot the convergence characteristics
 def plot_CV_values(method, results, precision, tol):
     N_list = list(results.keys())
@@ -73,7 +72,7 @@ def plot_CV_values(method, results, precision, tol):
     plt.title(f"{method} convergence for different N (threshold={tol}, {precision})")
     ax1.grid(True, linestyle='--', alpha=0.5)
     plt.tight_layout()
-    plt.show()
+    plt.show()    
 
 
 def plot_threshold_values(method, results, precision, tol):
