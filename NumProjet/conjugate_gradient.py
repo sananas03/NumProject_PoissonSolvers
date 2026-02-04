@@ -6,8 +6,6 @@ Created on Fri Nov  7 14:59:41 2025
 @authors: sgardettehofmann, lmannoni
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
 from domain import *
 from jacobi import discrete_laplacian
 
@@ -96,34 +94,6 @@ def plot_CG(results, iter_max, tol, precision):
     plt.title(f"Conjugate Gradient Convergence ({precision}, tol={tol})")
     plt.grid(True, which='both', linestyle='--', alpha=0.5)
     plt.legend(title="Grid size N", loc="best")
-    plt.tight_layout()
-    plt.show()
-
-
-#Plot the convergence characteristics
-def plot_CV_values(method, results, precision, tol):
-    N_list = list(results.keys())
-    # List of minimal residuals achieved for each grid size
-    res_cv_list = [results[N]["res_cv"] for N in N_list]
-    # List of number of iterations needed to reach minimal residual for each grid size
-    iter_cv_list = [results[N]["iter_cv"] for N in N_list]
- 
-    # Plot number of iterations (left y-axis)
-    fig, ax1 = plt.subplots(figsize=(8,6))
-    ax1.set_xlabel("N")
-    ax1.set_ylabel("Nb of iterations to converge", color="tab:blue")
-    ax1.plot(N_list, iter_cv_list, marker='o', linestyle='-', color="tab:blue")
-    ax1.tick_params(axis='y', labelcolor="tab:blue")
-
-    # Plot minimal residual (right y-axis)
-    ax2 = ax1.twinx()
-    ax2.set_ylabel("log10(minimal residual)", color="tab:red")
-    ax2.plot(N_list, np.log10(res_cv_list), marker='s', linestyle='--', color="tab:red")
-    ax2.tick_params(axis='y', labelcolor="tab:red")
-
-    # Title + grid
-    plt.title(f"{method} convergence for different N (threshold={tol}, {precision})")
-    ax1.grid(True, linestyle='--', alpha=0.5)
     plt.tight_layout()
     plt.show()
 
